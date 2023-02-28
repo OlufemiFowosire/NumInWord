@@ -8,17 +8,18 @@ namespace NumInWord
 {
     internal class ConverterEngine
     {
-        List<IWordable> rules= new List<IWordable>();
+        private readonly List<Wordable> rules;
 
-        public ConverterEngine(IEnumerable<IWordable> rules) {
+        public ConverterEngine(IEnumerable<Wordable> rules) {
+            this.rules = new List<Wordable>();
             this.rules.AddRange(rules);
         }
 
-        public void addRule(IWordable w) { 
+        public void addRule(Wordable w) { 
             rules.Add(w);
         }
 
-        public void removeRule(IWordable w)
+        public void removeRule(Wordable w)
         {
             rules.Remove(w);
         }

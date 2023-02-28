@@ -6,40 +6,27 @@ using System.Threading.Tasks;
 
 namespace NumInWord
 {
-    internal class Tens : IWordable
+    internal class Tens : Wordable
     {
-        private int priority = 3;
         private int tensVal;
 
-        public string convert(int num)
+        public Tens()
         {
-            string result = string.Empty;
-            if (InsertAnd(num))
-            {
-                result += "and ";
-            }
-            result += ConverterUtil.convertTens(tensVal / 10) + " ";
-
-            return result;
+            priority = 3;
         }
 
-        public int GetPriority()
+        public override string cconvert()
         {
-            return priority;
+            return ConverterUtil.convertTens(tensVal / 10) + " ";
         }
 
-        public int CompareTo(IWordable other)
-        {
-            return priority.CompareTo(other.GetPriority());
-        }
-
-        public bool IsMatch(int num)
+        public override bool IsMatch(int num)
         {
             tensVal = num % 100;
             return tensVal >= 20;
         }
 
-        public bool InsertAnd(int num)
+        public override bool InsertAnd(int num)
         {
             return IsMatch(num) && num > 100;
         }

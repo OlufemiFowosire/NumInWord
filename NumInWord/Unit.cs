@@ -6,39 +6,26 @@ using System.Threading.Tasks;
 
 namespace NumInWord
 {
-    internal class Unit : IWordable
+    internal class Unit : Wordable
     {
-        private int priority = 1;
         private int unitVal;
 
-        public int GetPriority() { 
-            return priority; 
+        public Unit() {
+            priority = 1;
         }
 
-        public string convert(int num)
+        public override string cconvert()
         {
-            string result = string.Empty;
-            if (InsertAnd(num))
-            {
-                result += "and ";
-            }
-            result += ConverterUtil.convertDigit(unitVal);
-
-            return result;
+            return ConverterUtil.convertDigit(unitVal) + " ";
         }
 
-        public int CompareTo(IWordable other)
-        {
-            return priority.CompareTo(other.GetPriority());
-        }
-
-        public bool IsMatch(int num)
+        public override bool IsMatch(int num)
         {
             unitVal = num % 100;
             return unitVal > 0 && unitVal < 20;
         }
 
-        public bool InsertAnd(int num)
+        public override bool InsertAnd(int num)
         {
             return IsMatch(num) && num > 100;
         }

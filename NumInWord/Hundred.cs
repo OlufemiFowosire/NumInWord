@@ -6,38 +6,26 @@ using System.Threading.Tasks;
 
 namespace NumInWord
 {
-    internal class Hundred : IWordable
+    internal class Hundred : Wordable
     {
-        private int priority = 4;
         private int hundVal;
 
-        public int GetPriority() { 
-            return priority; 
-        }
-        public string convert(int num)
+        public Hundred()
         {
-            string result = string.Empty;
-            if (InsertAnd(num))
-            {
-                result += "and ";
-            }
-            result += ConverterUtil.convertDigit(hundVal) + " hundred ";
-
-            return result;
+            priority = 4;
         }
-
-        public int CompareTo(IWordable other)
+        public override string cconvert()
         {
-            return priority.CompareTo(other.GetPriority());
+            return ConverterUtil.convertDigit(hundVal) + " hundred ";
         }
 
-        public bool IsMatch(int num)
+        public override bool IsMatch(int num)
         {
             hundVal = (num % 1000) / 100;
             return hundVal > 0;
         }
 
-        public bool InsertAnd(int num)
+        public override bool InsertAnd(int num)
         {
             return IsMatch(num) && num % 100 == 0 && num / 1000 != 0;
         }

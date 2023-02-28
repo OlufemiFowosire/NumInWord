@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace NumInWord
 {
-    internal class Thousand : IWordable
+    internal class Thousand : Wordable
     {
-        private int priority = 5;
         private int thousVal;
-        private List<IWordable> baseRules;
+        private readonly List<Wordable> baseRules;
 
         public Thousand() {
-            baseRules = new List<IWordable>
+            priority = 5;
+            baseRules = new List<Wordable>
             {
                 new Hundred(),
                 new Tens(),
@@ -21,14 +21,9 @@ namespace NumInWord
                 new Unit()
             };
         }
-        public string convert(int num)
+        public override string cconvert()
         {
             string result = string.Empty;
-
-            if (InsertAnd(num))
-            {
-                result += "and ";
-            }
             foreach (var rule in baseRules)
             {
                 if (rule.IsMatch(thousVal))
@@ -36,28 +31,18 @@ namespace NumInWord
                     result += rule.convert(thousVal);
                 }
             }
-            result += " thousand ";
+            result += "thousand ";
 
             return result;
         }
 
-        public int GetPriority()
-        {
-            return priority;
-        }
-
-        public int CompareTo(IWordable other)
-        {
-            return priority.CompareTo(other.GetPriority());
-        }
-
-        public bool IsMatch(int num)
+        public override bool IsMatch(int num)
         {
             thousVal = (num % 1000000) / 1000;
             return thousVal > 0;
         }
 
-        public bool InsertAnd(int num)
+        public override bool InsertAnd(int num)
         {
             return IsMatch(num) && num % 1000 == 0 && num / 1000000 != 0 && thousVal < 100;
         }

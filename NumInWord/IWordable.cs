@@ -8,7 +8,7 @@ namespace NumInWord
 {
     public interface IWordable : IComparable<IWordable>
     {
-        string convert(int num);
+        string cconvert();
 
         int GetPriority();
 

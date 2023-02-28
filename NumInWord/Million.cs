@@ -4,21 +4,16 @@ using System.Text;
 
 namespace NumInWord
 {
-    internal class Million : IWordable
+    internal class Million : Wordable
     {
-        private int priority = 6;
         private int millVal;
 
-        public int GetPriority()
-        {
-            return priority;
-        }
-
-        List<IWordable> baseRules;
+        private readonly List<Wordable> baseRules;
 
         public Million()
         {
-            baseRules = new List<IWordable>
+            priority= 6;
+            baseRules = new List<Wordable>
             {
                 new Hundred(),
                 new Tens(),
@@ -26,7 +21,7 @@ namespace NumInWord
                 new Unit()
             };
         }
-        public string convert(int num)
+        public override string cconvert()
         {
             string result = string.Empty;
             foreach (var rule in baseRules)
@@ -36,23 +31,18 @@ namespace NumInWord
                     result += rule.convert(millVal);
                 }
             }
-            result += " million ";
+            result += "million ";
 
             return result;
         }
 
-        public int CompareTo(IWordable other)
-        {
-            return priority.CompareTo(other.GetPriority());
-        }
-
-        public bool IsMatch(int num)
+        public override bool IsMatch(int num)
         {
             millVal = (num % 1000000000) / 1000000;
             return millVal > 0;
         }
 
-        public bool InsertAnd(int num)
+        public override bool InsertAnd(int num)
         {
             return IsMatch(num) && num % 1000000 == 0 && num / 1000000000 != 0 && millVal < 100;
         }
