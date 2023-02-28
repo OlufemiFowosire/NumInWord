@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     internal class ConverterEngine
     {
+        private readonly IComposable composable;
         private readonly List<Wordable> rules;
 
         public ConverterEngine(IEnumerable<Wordable> rules) {
             this.rules = new List<Wordable>();
             this.rules.AddRange(rules);
+            composable = new Composable(this.rules);
         }
 
         public void addRule(Wordable w) { 
@@ -26,15 +22,7 @@ namespace NumInWord
 
         public string convert(int num)
         {
-            string result = string.Empty;
-            foreach (var rule in rules)
-            {
-                if (rule.IsMatch(num))
-                {
-                    result += rule.convert(num);
-                }
-            }
-            return result;
+            return composable.convert(num);
         }
     }
 }

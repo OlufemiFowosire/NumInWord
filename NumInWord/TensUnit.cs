@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     internal class TensUnit : Wordable
     {
@@ -13,7 +7,7 @@ namespace NumInWord
         public TensUnit() {
             priority = 2;
         }
-        public override string cconvert()
+        public override string convert()
         {
             return ConverterUtil.convertDigit(unitVal % 10) + " ";
         }

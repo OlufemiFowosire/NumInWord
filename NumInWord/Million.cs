@@ -1,39 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     internal class Million : Wordable
     {
+        private readonly IComposable composable;
         private int millVal;
-
-        private readonly List<Wordable> baseRules;
 
         public Million()
         {
             priority= 6;
-            baseRules = new List<Wordable>
-            {
-                new Hundred(),
-                new Tens(),
-                new TensUnit(),
-                new Unit()
-            };
+            composable = new Composable();
         }
-        public override string cconvert()
+        public override string convert()
         {
-            string result = string.Empty;
-            foreach (var rule in baseRules)
-            {
-                if (rule.IsMatch(millVal))
-                {
-                    result += rule.convert(millVal);
-                }
-            }
-            result += "million ";
-
-            return result;
+            return composable.convert(millVal) + "million ";
         }
 
         public override bool IsMatch(int num)

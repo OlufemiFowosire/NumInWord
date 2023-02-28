@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     public interface IWordable : IComparable<IWordable>
     {
-        string cconvert();
+        string convert();
 
         int GetPriority();
 

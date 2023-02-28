@@ -1,39 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     internal class Thousand : Wordable
     {
+        private readonly IComposable composable;
         private int thousVal;
-        private readonly List<Wordable> baseRules;
 
         public Thousand() {
             priority = 5;
-            baseRules = new List<Wordable>
-            {
-                new Hundred(),
-                new Tens(),
-                new TensUnit(),
-                new Unit()
-            };
+            composable = new Composable();
         }
-        public override string cconvert()
+        public override string convert()
         {
-            string result = string.Empty;
-            foreach (var rule in baseRules)
-            {
-                if (rule.IsMatch(thousVal))
-                {
-                    result += rule.convert(thousVal);
-                }
-            }
-            result += "thousand ";
-
-            return result;
+            return composable.convert(thousVal) + "thousand ";
         }
 
         public override bool IsMatch(int num)

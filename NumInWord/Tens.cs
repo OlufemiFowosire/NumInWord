@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     internal class Tens : Wordable
     {
@@ -15,7 +9,7 @@ namespace NumInWord
             priority = 3;
         }
 
-        public override string cconvert()
+        public override string convert()
         {
             return ConverterUtil.convertTens(tensVal / 10) + " ";
         }

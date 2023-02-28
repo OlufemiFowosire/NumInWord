@@ -1,19 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     internal abstract class Wordable : IWordable
     {
         protected int priority;
+        
         public int CompareTo(IWordable other)
         {
             return priority.CompareTo(other.GetPriority());
         }
-        public abstract string cconvert();
+        public abstract string convert();
         public int GetPriority()
         {
             return priority;
@@ -28,7 +23,7 @@ namespace NumInWord
             {
                 result += "and ";
             }
-            result += cconvert();
+            result += convert();
 
             return result;
         }

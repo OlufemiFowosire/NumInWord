@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NumInWord
+﻿namespace NumInWord
 {
     internal class Unit : Wordable
     {
@@ -14,7 +8,7 @@ namespace NumInWord
             priority = 1;
         }
 
-        public override string cconvert()
+        public override string convert()
         {
             return ConverterUtil.convertDigit(unitVal) + " ";
         }
