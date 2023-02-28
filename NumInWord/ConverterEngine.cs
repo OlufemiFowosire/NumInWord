@@ -8,9 +8,9 @@ namespace NumInWord
 {
     internal class ConverterEngine
     {
-        List<IWordable?> rules= new List<IWordable?>();
+        List<IWordable> rules= new List<IWordable>();
 
-        public ConverterEngine(IEnumerable<IWordable?> rules) {
+        public ConverterEngine(IEnumerable<IWordable> rules) {
             this.rules.AddRange(rules);
         }
 

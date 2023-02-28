@@ -6,18 +6,26 @@ using System.Threading.Tasks;
 
 namespace NumInWord
 {
-    public class Converter
+    public sealed class Converter
     {
-        ConverterEngine engine;
+        private ConverterEngine engine;
+        
+        #nullable enable
+        private static Converter? instance;
         public static Converter Instance {
-            get { return new Converter(); }
+            get
+            {
+                return instance ??= new Converter();
+            }
         }
+
+        #nullable disable
         private Converter() {
             var ruleType = typeof(IWordable);
-            IEnumerable<IWordable?> rules = this.GetType().Assembly.GetTypes()
+            IEnumerable<IWordable> rules = this.GetType().Assembly.GetTypes()
                                                 .Where(p => ruleType.IsAssignableFrom(p) && !p.IsAbstract)
                                                 .Select(p => Activator.CreateInstance(p) as IWordable)
-                                                .OrderByDescending(p => p);
+                                                .OrderDescending();
             engine = new ConverterEngine(rules);
         }
 

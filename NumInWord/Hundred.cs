@@ -25,7 +25,7 @@ namespace NumInWord
             return result;
         }
 
-        public int CompareTo(IWordable? other)
+        public int CompareTo(IWordable other)
         {
             return priority.CompareTo(other.getPriority());
         }

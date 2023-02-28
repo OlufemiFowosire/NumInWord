@@ -14,11 +14,6 @@ namespace NumInWord
             return priority; 
         }
 
-        public int CompareTo(IWordable? other)
-        {
-            return priority.CompareTo(other.getPriority());
-        }
-
         public string convert(int num)
         {
             string result = string.Empty;
@@ -37,6 +32,11 @@ namespace NumInWord
             }
 
             return result;
+        }
+
+        public int CompareTo(IWordable other)
+        {
+            return priority.CompareTo(other.getPriority());
         }
     }
 }
