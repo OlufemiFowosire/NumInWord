@@ -6,22 +6,19 @@ using System.Threading.Tasks;
 
 namespace NumInWord
 {
-    internal class Hundred : IWordable
+    internal class TensUnit : IWordable
     {
-        private int priority = 4;
-        private int hundVal;
+        private int priority = 2;
+        private int unitVal;
 
         public int GetPriority() { 
             return priority; 
         }
+
         public string convert(int num)
         {
             string result = string.Empty;
-            if (InsertAnd(num))
-            {
-                result += "and ";
-            }
-            result += ConverterUtil.convertDigit(hundVal) + " hundred ";
+            result += ConverterUtil.convertDigit(unitVal % 10);
 
             return result;
         }
@@ -33,13 +30,13 @@ namespace NumInWord
 
         public bool IsMatch(int num)
         {
-            hundVal = (num % 1000) / 100;
-            return hundVal > 0;
+            unitVal = num % 100;
+            return unitVal > 20;
         }
 
         public bool InsertAnd(int num)
         {
-            return IsMatch(num) && num % 100 == 0 && num / 1000 != 0;
+            return false;
         }
     }
 }

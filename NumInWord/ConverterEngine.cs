@@ -28,7 +28,10 @@ namespace NumInWord
             string result = string.Empty;
             foreach (var rule in rules)
             {
-                result += rule.convert(num);
+                if (rule.IsMatch(num))
+                {
+                    result += rule.convert(num);
+                }
             }
             return result;
         }

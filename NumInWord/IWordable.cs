@@ -10,6 +10,10 @@ namespace NumInWord
     {
         string convert(int num);
 
-        int getPriority();
+        int GetPriority();
+
+        bool IsMatch(int num);
+
+        bool InsertAnd(int num);
     }
 }

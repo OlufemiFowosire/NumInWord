@@ -8,39 +8,58 @@ namespace NumInWord
 {
     internal class Thousand : IWordable
     {
-        private int priority = 4;
-
-        public int getPriority() { 
-            return priority; 
-        }
-
-        List<IWordable> baseRules = new List<IWordable>();
+        private int priority = 5;
+        private int thousVal;
+        private List<IWordable> baseRules;
 
         public Thousand() {
-            baseRules.Add(new Hundred());
-            baseRules.Add(new Tens());
-            baseRules.Add(new Unit());
+            baseRules = new List<IWordable>
+            {
+                new Hundred(),
+                new Tens(),
+                new TensUnit(),
+                new Unit()
+            };
         }
         public string convert(int num)
         {
             string result = string.Empty;
 
-            int thousVal = (num % 1000000) / 1000;
-            if (thousVal > 0)
+            if (InsertAnd(num))
             {
-                foreach (var rule in baseRules)
+                result += "and ";
+            }
+            foreach (var rule in baseRules)
+            {
+                if (rule.IsMatch(thousVal))
                 {
                     result += rule.convert(thousVal);
                 }
-                result += " thousand ";
             }
-            
+            result += " thousand ";
+
             return result;
+        }
+
+        public int GetPriority()
+        {
+            return priority;
         }
 
         public int CompareTo(IWordable other)
         {
-            return priority.CompareTo(other.getPriority());
+            return priority.CompareTo(other.GetPriority());
+        }
+
+        public bool IsMatch(int num)
+        {
+            thousVal = (num % 1000000) / 1000;
+            return thousVal > 0;
+        }
+
+        public bool InsertAnd(int num)
+        {
+            return IsMatch(num) && num % 1000 == 0 && num / 1000000 != 0 && thousVal < 100;
         }
     }
 }

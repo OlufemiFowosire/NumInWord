@@ -6,41 +6,55 @@ namespace NumInWord
 {
     internal class Million : IWordable
     {
-        private int priority = 5;
+        private int priority = 6;
+        private int millVal;
 
-        public int getPriority()
+        public int GetPriority()
         {
             return priority;
         }
 
-        List<IWordable> baseRules = new List<IWordable>();
+        List<IWordable> baseRules;
 
         public Million()
         {
-            baseRules.Add(new Hundred());
-            baseRules.Add(new Tens());
-            baseRules.Add(new Unit());
+            baseRules = new List<IWordable>
+            {
+                new Hundred(),
+                new Tens(),
+                new TensUnit(),
+                new Unit()
+            };
         }
         public string convert(int num)
         {
             string result = string.Empty;
-
-            int millVal = (num % 1000000000) / 1000000;
-            if (millVal > 0)
+            foreach (var rule in baseRules)
             {
-                foreach (var rule in baseRules)
+                if (rule.IsMatch(millVal))
                 {
                     result += rule.convert(millVal);
                 }
-                result += " million ";
             }
+            result += " million ";
 
             return result;
         }
 
         public int CompareTo(IWordable other)
         {
-            return priority.CompareTo(other.getPriority());
+            return priority.CompareTo(other.GetPriority());
+        }
+
+        public bool IsMatch(int num)
+        {
+            millVal = (num % 1000000000) / 1000000;
+            return millVal > 0;
+        }
+
+        public bool InsertAnd(int num)
+        {
+            return IsMatch(num) && num % 1000000 == 0 && num / 1000000000 != 0 && millVal < 100;
         }
     }
 }

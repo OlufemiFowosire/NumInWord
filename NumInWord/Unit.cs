@@ -9,34 +9,38 @@ namespace NumInWord
     internal class Unit : IWordable
     {
         private int priority = 1;
+        private int unitVal;
 
-        public int getPriority() { 
+        public int GetPriority() { 
             return priority; 
         }
 
         public string convert(int num)
         {
             string result = string.Empty;
-            int unitVal = num % 100;
-            if (unitVal > 0 && unitVal < 20 && num > 100)
+            if (InsertAnd(num))
             {
                 result += "and ";
             }
-            if(unitVal > 20)
-            {
-                result += ConverterUtil.convertDigit(unitVal % 10);
-            }
-            else if (unitVal < 20)
-            {
-                result += ConverterUtil.convertDigit(unitVal);
-            }
+            result += ConverterUtil.convertDigit(unitVal);
 
             return result;
         }
 
         public int CompareTo(IWordable other)
         {
-            return priority.CompareTo(other.getPriority());
+            return priority.CompareTo(other.GetPriority());
+        }
+
+        public bool IsMatch(int num)
+        {
+            unitVal = num % 100;
+            return unitVal > 0 && unitVal < 20;
+        }
+
+        public bool InsertAnd(int num)
+        {
+            return IsMatch(num) && num > 100;
         }
     }
 }

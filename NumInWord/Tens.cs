@@ -8,31 +8,40 @@ namespace NumInWord
 {
     internal class Tens : IWordable
     {
-        private int priority = 2;
-
-        public int getPriority() { 
-            return priority; 
-        }
+        private int priority = 3;
+        private int tensVal;
 
         public string convert(int num)
         {
             string result = string.Empty;
-            int tensVal = num % 100;
-            if (tensVal >= 20 && tensVal < 100 && num > 100)
+            if (InsertAnd(num))
             {
                 result += "and ";
             }
-            if (tensVal >= 20)
-            {
-                result += ConverterUtil.convertTens(tensVal / 10) + " ";
-            }
+            result += ConverterUtil.convertTens(tensVal / 10) + " ";
 
             return result;
         }
 
+        public int GetPriority()
+        {
+            return priority;
+        }
+
         public int CompareTo(IWordable other)
         {
-            return priority.CompareTo(other.getPriority());
+            return priority.CompareTo(other.GetPriority());
+        }
+
+        public bool IsMatch(int num)
+        {
+            tensVal = num % 100;
+            return tensVal >= 20;
+        }
+
+        public bool InsertAnd(int num)
+        {
+            return IsMatch(num) && num > 100;
         }
     }
 }
