@@ -2,7 +2,7 @@
 {
     internal class Hundred : Wordable
     {
-        private int hundVal;
+        private long hundVal;
 
         public Hundred()
         {
@@ -13,13 +13,13 @@
             return ConverterUtil.convertDigit(hundVal) + " hundred ";
         }
 
-        public override bool IsMatch(int num)
+        public override bool IsMatch(long num)
         {
             hundVal = (num % 1000) / 100;
             return hundVal > 0;
         }
 
-        public override bool InsertAnd(int num)
+        public override bool InsertAnd(long num)
         {
             return IsMatch(num) && num % 100 == 0 && num / 1000 != 0;
         }

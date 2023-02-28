@@ -3,7 +3,7 @@
     internal class Million : Wordable
     {
         private readonly IComposable composable;
-        private int millVal;
+        private long millVal;
 
         public Million()
         {
@@ -15,13 +15,13 @@
             return composable.convert(millVal) + "million ";
         }
 
-        public override bool IsMatch(int num)
+        public override bool IsMatch(long num)
         {
             millVal = (num % 1000000000) / 1000000;
             return millVal > 0;
         }
 
-        public override bool InsertAnd(int num)
+        public override bool InsertAnd(long num)
         {
             return IsMatch(num) && num % 1000000 == 0 && num / 1000000000 != 0 && millVal < 100;
         }

@@ -4,10 +4,10 @@
     {
         string convert();
 
-        int GetPriority();
+        short GetPriority();
 
-        bool IsMatch(int num);
+        bool IsMatch(long num);
 
-        bool InsertAnd(int num);
+        bool InsertAnd(long num);
     }
 }

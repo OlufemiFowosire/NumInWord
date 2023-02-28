@@ -20,7 +20,7 @@
             rules.Remove(w);
         }
 
-        public string convert(int num)
+        public string convert(long num)
         {
             return composable.convert(num);
         }

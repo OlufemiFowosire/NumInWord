@@ -18,7 +18,7 @@
         {
             baseRules = rules;
         }
-        public string convert(int value)
+        public string convert(long value)
         {
             string result = string.Empty;
             foreach (var rule in baseRules)

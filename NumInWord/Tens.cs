@@ -2,7 +2,7 @@
 {
     internal class Tens : Wordable
     {
-        private int tensVal;
+        private long tensVal;
 
         public Tens()
         {
@@ -14,13 +14,13 @@
             return ConverterUtil.convertTens(tensVal / 10) + " ";
         }
 
-        public override bool IsMatch(int num)
+        public override bool IsMatch(long num)
         {
             tensVal = num % 100;
             return tensVal >= 20;
         }
 
-        public override bool InsertAnd(int num)
+        public override bool InsertAnd(long num)
         {
             return IsMatch(num) && num > 100;
         }

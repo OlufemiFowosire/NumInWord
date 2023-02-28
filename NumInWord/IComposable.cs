@@ -2,6 +2,6 @@
 {
     internal interface IComposable
     {
-        string convert(int value);
+        string convert(long value);
     }
 }

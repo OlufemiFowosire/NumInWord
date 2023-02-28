@@ -23,7 +23,7 @@
             engine = new ConverterEngine(rules);
         }
 
-        public string convertToWord(int num)
+        public string convertToWord(long num)
         {
             return engine.convert(num);
         }

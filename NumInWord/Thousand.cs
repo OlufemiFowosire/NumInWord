@@ -3,7 +3,7 @@
     internal class Thousand : Wordable
     {
         private readonly IComposable composable;
-        private int thousVal;
+        private long thousVal;
 
         public Thousand() {
             priority = 5;
@@ -14,13 +14,13 @@
             return composable.convert(thousVal) + "thousand ";
         }
 
-        public override bool IsMatch(int num)
+        public override bool IsMatch(long num)
         {
             thousVal = (num % 1000000) / 1000;
             return thousVal > 0;
         }
 
-        public override bool InsertAnd(int num)
+        public override bool InsertAnd(long num)
         {
             return IsMatch(num) && num % 1000 == 0 && num / 1000000 != 0 && thousVal < 100;
         }

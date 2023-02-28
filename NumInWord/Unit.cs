@@ -2,7 +2,7 @@
 {
     internal class Unit : Wordable
     {
-        private int unitVal;
+        private long unitVal;
 
         public Unit() {
             priority = 1;
@@ -13,13 +13,13 @@
             return ConverterUtil.convertDigit(unitVal) + " ";
         }
 
-        public override bool IsMatch(int num)
+        public override bool IsMatch(long num)
         {
             unitVal = num % 100;
             return unitVal > 0 && unitVal < 20;
         }
 
-        public override bool InsertAnd(int num)
+        public override bool InsertAnd(long num)
         {
             return IsMatch(num) && num > 100;
         }

@@ -2,7 +2,7 @@
 {
     public static class ConverterUtil
     {
-        public static string convertDigit(int digit)
+        public static string convertDigit(long digit)
         {
             string result = "";
             switch (digit)
@@ -70,7 +70,7 @@
             return result;
         }
 
-        public static string convertTens(int tens)
+        public static string convertTens(long tens)
         {
             string result = "";
             switch (tens)
