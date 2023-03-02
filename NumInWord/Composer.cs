@@ -1,10 +1,10 @@
 ﻿namespace NumInWord
 {
-    internal class Composable : IComposable
+    internal class Composer : IComposer
     {
         List<Wordable> baseRules;
 
-        public Composable()
+        public Composer()
         {
             baseRules = new List<Wordable>()
             {
@@ -14,7 +14,7 @@
                 new Unit()
             };
         }
-        public Composable(List<Wordable> rules)
+        public Composer(List<Wordable> rules)
         {
             baseRules = rules;
         }

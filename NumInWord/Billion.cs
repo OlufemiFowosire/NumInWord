@@ -8,13 +8,13 @@ namespace NumInWord
 {
     internal class Billion: Wordable
     {
-        private readonly IComposable composable;
+        private readonly IComposer composable;
         private long billVal;
 
         public Billion()
         {
             priority = 7;
-            composable = new Composable();
+            composable = new Composer();
         }
         public override string convert()
         {

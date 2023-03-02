@@ -1,6 +1,6 @@
 ﻿namespace NumInWord
 {
-    internal interface IComposable
+    internal interface IComposer
     {
         string convert(long value);
     }

@@ -2,13 +2,13 @@
 {
     internal class Million : Wordable
     {
-        private readonly IComposable composable;
+        private readonly IComposer composable;
         private long millVal;
 
         public Million()
         {
             priority= 6;
-            composable = new Composable();
+            composable = new Composer();
         }
         public override string convert()
         {

@@ -2,12 +2,12 @@
 {
     internal class Thousand : Wordable
     {
-        private readonly IComposable composable;
+        private readonly IComposer composable;
         private long thousVal;
 
         public Thousand() {
             priority = 5;
-            composable = new Composable();
+            composable = new Composer();
         }
         public override string convert()
         {

@@ -2,13 +2,13 @@
 {
     internal class ConverterEngine
     {
-        private readonly IComposable composable;
+        private readonly IComposer composable;
         private readonly List<Wordable> rules;
 
         public ConverterEngine(IEnumerable<Wordable> rules) {
             this.rules = new List<Wordable>();
             this.rules.AddRange(rules);
-            composable = new Composable(this.rules);
+            composable = new Composer(this.rules);
         }
 
         public void addRule(Wordable w) { 
